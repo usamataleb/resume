@@ -1,0 +1,148 @@
+:root{
+    ---blue: #1e6887;
+    ---darkblue: #104257;
+    ---green: #719e36;
+    ---white: #fff;
+    ---gray: #f5f5f5;
+    ---black1: #222;
+    ---black2: #999;
+    ---lightorange:#3caea3;
+    ---darkgren:#013220;
+    ---darkyellow:#8B8000;
+    ---course:#f2503B;
+    ---edu:#173f5f;
+    ---yellow:#b3c100;
+
+}
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    max-width: 960px;
+    margin: auto;
+}
+
+h1 {
+    font-size: 3em;
+    letter-spacing: .6em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+h2 {
+    font-size: 1.5em;
+    padding-bottom: 1em;
+}
+
+main { 
+    display: grid;
+    grid-template-columns:50% 50%;
+    margin-top: 3em;
+}
+
+header {
+    text-align: center;
+    margin: auto 2em;
+}
+
+section {
+    margin: auto 1em 4em 2em
+}
+
+i {
+    margin-right: .5em;
+}
+
+p {
+    margin: .2em auto;
+}
+
+hr {
+    border: none;
+    background-color: lightgray;
+    height: 1px;
+}
+
+h1, h2 {
+    font-weight: 100;
+    margin-bottom: 0;
+}
+
+#mainLeft {
+    border-right: 0.5px solid lightgray;
+}
+
+
+#header h1 b{
+color: var(---darkblue);
+}
+
+
+#header h1 {
+    color: var(---blue);
+    }
+
+
+strong{
+transition: 1S;    
+margin-bottom:200px;
+color: var(---darkblue);
+}
+
+
+.info p a{
+        text-decoration: none;
+        color:blue
+    
+    }
+
+
+    
+
+.info h2 b{
+    color: var(---darkblue);
+}
+
+.skills ul li{
+    text-decoration: none;
+    list-style: none;
+    color: var(---edu)
+}
+
+.skills ul li:nth-child(16n){
+    padding-left: 100px;
+
+}
+.course li{
+    color: var(---course);
+    list-style: none
+}
+.a1{
+    color: var(---green);
+    list-style: none;
+}
+.img{
+    width: 30%;
+    height: 30%;
+    border-radius: 10px;
+}
+.addi{
+    margin-left: 50px;
+}
+.intern{
+    color: var(---yellow);
+}
+.clubs{
+    color: var(---lightorange);
+}
+.awards{
+    color: var(---darkgren);
+}
+.about{
+    color: var(---black2);
+}
+.digital{
+    margin-left:230px;
+    margin-top:-120px;
+}
