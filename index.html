@@ -6,114 +6,292 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="style.css" rel="stylesheet">
-    <title>Usama Talib Juma Resume </title>
+    <style>
+        :root {
+            --blue: #2563eb;
+            --darkyellow: #d97706;
+            --light-gray: #f8fafc;
+            --dark-gray: #374151;
+            --border-color: #e5e7eb;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: #ffffff;
+        }
+
+        #header {
+            background: linear-gradient(135deg, var(--blue), #1d4ed8);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        #header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        #header strong {
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        hr {
+            border: none;
+            height: 2px;
+            background: var(--blue);
+            margin: 1rem 0;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--light-gray);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: var(--blue);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info p {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info i {
+            color: var(--blue);
+            width: 20px;
+        }
+
+        .info a {
+            color: var(--blue);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .info a:hover {
+            color: var(--darkyellow);
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        li {
+            padding: 0.3rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        .course li, .intern li {
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .course li:before, .intern li:before {
+            content: "▸";
+            color: var(--blue);
+            position: absolute;
+            left: 0;
+        }
+
+        .about {
+            text-align: justify;
+            line-height: 1.8;
+        }
+
+        .skills b {
+            color: var(--blue);
+            display: block;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .new-skill {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+
+        .leadership-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+            
+            #header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+    <title>Usama Talib Juma Resume</title>
 </head>
 
 <body>
     <header id="header">
-        <!-- resume header with your name and title -->
-        <h1> <b><b>USAMA</b></b> TALIB</h1>
+        <h1><b>USAMA</b> TALIB</h1>
         <hr>
-        <strong>INFORMATION TECHNOLOGY (IT) STUDENT</strong>
+        <strong>FULL-STACK DEVELOPER & TEAM LEADER</strong>
         <hr>
     </header>
     <main>
         <article id="mainLeft">
-
             <section>
-                <!--  social media & contact infomation -->
                 <div class="info">
                     <h2><strong>CONTACT</strong></h2>
                     <hr>
 
-
-
                     <p>
-                        <i class="fab fa-github" aria-hidden="true"> Github</i>
-                        <a href="https://usamataleb.github.io/resume/" target="_blank">My Resume Site <a>
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                        <a href="https://github.com/Hima-Technology" target="_blank">Hima Technology GitHub</a>
                     </p>
 
                     <p>
-                        <i class="fab fa-instagram" aria-hidden="true"> Instagram</i>
+                        <i class="fab fa-github" aria-hidden="true"></i>
+                        <a href="https://usamataleb.github.io/resume/" target="_blank">Personal Resume Site</a>
+                    </p>
+
+                    <p>
+                        <i class="fas fa-globe" aria-hidden="true"></i>
+                        <a href="https://www.himatech.co.tz" target="_blank">Hima Technology</a>
+                    </p>
+
+                    <p>
+                        <i class="fab fa-instagram" aria-hidden="true"></i>
                         <a href="https://www.instagram.com/usama.lion/?hl=en" target="_blank">usama.lion</a>
                     </p>
 
-
                     <p>
-                        <i class="fab fa-whatsapp" aria-hidden="true"> WhatsApp</i>
-                        <a
-                            href="https://api.whatsapp.com/send?phone=255749020146&text=Hello! USAMA TALIB, I need to work with you.">USAMA
-                            TALIB</a>
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        <a href="https://api.whatsapp.com/send?phone=255749020146&text=Hello! USAMA TALIB, I need to work with you.">+255749020146</a>
                     </p>
 
                     <p>
-                        <i class="fa fa-envelope" aria-hidden="true"> Email:</i>
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
                         <a href="mailto:mamenmasau@gmail.com" target="_blank">mamenmasau@gmail.com</a>
                     </p>
-
                 </div>
             </section>
 
             <section>
-                <h2><strong>SKILLS</strong></h2>
+                <h2><strong>TECHNICAL SKILLS</strong></h2>
                 <hr>
-                <!-- Skills Section -->
 
-                <p class="skills">
-                    <b>
-                        <p>Programing Skills:</p>
-                    </b>
-                <ul>
-                    <li> HTML, CSS & BOOTSTRAP</li>
-                    <li>PHP</li>
-                    <li> Python</li>
-                    <li> Android Studio</li>
-                    <li> Visual Basics</li>
-                    <li> UI Design</li>
-                    <li> Java Script</li>
+                <div class="skills">
+                    <b>Frontend Development:</b>
+                    <ul>
+                        <li>Next.js <span class="new-skill">ADVANCED</span></li>
+                        <li>React.js</li>
+                        <li>Svelte <span class="new-skill">NEW</span></li>
+                        <li>HTML5, CSS3 & Bootstrap</li>
+                        <li>JavaScript (ES6+)</li>
+                        <li>UI/UX Design</li>
+                    </ul>
 
+                    <b>Backend Development:</b>
+                    <ul>
+                        <li>Node.js</li>
+                        <li>PHP</li>
+                        <li>Python</li>
+                        <li>Slim Framework</li>
+                        <li>RESTful APIs</li>
+                    </ul>
+
+                    <b>Mobile Development:</b>
+                    <ul>
+                        <li>Android Studio</li>
+                        <li>React Native</li>
+                    </ul>
+
+                    <b>Database & Tools:</b>
+                    <ul>
+                        <li>MySQL/PostgreSQL</li>
+                        <li>Git & GitHub</li>
+                        <li>Linux Administration</li>
+                        <li>Visual Studio Code</li>
+                    </ul>
+
+                    <b>Digital Marketing & Design:</b>
+                    <ul>
+                        <li>Graphics Design</li>
+                        <li>Website Management</li>
+                        <li>Social Media Management</li>
+                        <li>Content Creation</li>
+                    </ul>
+
+                    <b>Other Skills:</b>
+                    <ul>
+                        <li>PC Maintenance</li>
+                        <li>Network Configuration</li>
+                        <li>Team Leadership <span class="leadership-badge">LEADER</span></li>
+                        <li>Project Management</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2><strong>CERTIFICATIONS</strong></h2>
+                <hr>
+                <ul class="course">
+                    <li>Agile Project Management - HP LIFE (2024)</li>
+                    <li>Introduction to Digital Business Skills - HP LIFE (2024)</li>
+                    <li>Effective Leadership - HP LIFE (2024)</li>
+                    <li>Introduction to Cybersecurity Awareness - HP LIFE (2024)</li>
                 </ul>
-                <div class="digital">
-                    <b>
-                        <p>Digital Marketing & Branding Skills:</p>
-                    </b>
-                    <ul>
-                        <li> Graphics Design</li>
-                        <li> Website Design</li>
-                        <li> Website Management</li>
-                        <li> Social Media Management</li>
-                        <li> Social media contents creation</li>
-
-                    </ul>
-                </div>
-
-                <div class="other-skills">
-                    <b>
-                        <p>Other Skills:</p>
-                    </b>
-                    <ul>
-                        <li>Pc Maintanance</li>
-                        <li>Swimming</li>
-                        <li>Driving</li>
-                    </ul>
-                </div>
-                </div>
-
             </section>
+
             <section>
-                <h2><strong class="edu">EDUCATION</strong></h2>
+                <h2><strong>EDUCATION</strong></h2>
                 <hr>
-                <!-- your education -->
 
-                <b> Information Technology (IT) </b>
-                <p>(2022 – 2023):The State University Of Zanzibar (SUZA)
-                    Relevant course :</p>
-
+                <b>Information Technology (IT)</b>
+                <p>(2022 – 2023): The State University Of Zanzibar (SUZA)</p>
+                <p>Relevant courses:</p>
                 <ul class="course">
                     <li>Programming</li>
-                    <li>Database system </li>
+                    <li>Database Systems</li>
                     <li>System Analysis & Design</li>
                     <li>Graphic Design</li>
                     <li>Website Design</li>
@@ -122,228 +300,180 @@
                 </ul>
 
                 <b>Advanced Education</b>
-                <p>(2018 - 2021): <a href="https://www.google.com/
-			search?q=haci+ayse+var+Maarif+shool+zanzibar&rlz=1C1CHBF_enTZ1019TZ1020&oq=haci+ayse+var+Maarif+shool+zanzibar&aqs=chrome..69i57j33i10i160l3.
-			33077j0j4&sourceid=chrome&ie=UTF-8" target="_blank">Maarif Haci Ayse var School</a>
-                    Relevant course :</p>
+                <p>(2018 - 2021): <a href="https://www.google.com/search?q=haci+ayse+var+Maarif+shool+zanzibar" target="_blank">Maarif Haci Ayse var School</a></p>
+                <p>Relevant courses:</p>
                 <ul class="course">
-
-                    <li> Geography</li>
-                    <li> Chemistry</li>
-                    <li> Biology</li>
-                    <div class="addi">
-                        <p style="color:var(---blue)">Additional Courses:-</p>
-                        <hr>
-
-                    </div>
-                    <li style="color:var(---darkyellow)"> General Studies</li>
-                    <li style="color:var(---darkyellow)"> Basic And Applied Mathematics</li>
-
+                    <li>Geography</li>
+                    <li>Chemistry</li>
+                    <li>Biology</li>
+                    <li style="color:var(--darkyellow)">General Studies</li>
+                    <li style="color:var(--darkyellow)">Basic And Applied Mathematics</li>
                 </ul>
             </section>
-
 
             <section>
-                <h2><b><strong>AWARDS</strong></b></h2>
+                <h2><strong>AWARDS</strong></h2>
                 <hr>
-                <p>
                 <ul class="awards">
-                    <p> 11<sup>th</sup> Position in Machine Learning Model Building Hackathon (Africa) | 2022.</p>
-                    <p> 2<sup>th</sup> Position in code in the dark (offline coding) in Google Developer Students Club
-                        SUZA | 2023.</p>
+                    <li>11th Position in Machine Learning Model Building Hackathon (Africa) | 2022</li>
+                    <li>2nd Position in Code in the Dark (offline coding) - Google Developer Students Club SUZA | 2023</li>
                 </ul>
-                </p>
             </section>
-
         </article>
 
         <article id="mainRight">
             <section>
                 <h2><strong>ABOUT ME</strong></h2>
                 <hr>
-                <!-- about you -->
-                <!-- <img class="img" src="abdulrazak.jpg"> -->
                 <div class="about">
-                    I'm a Tanzanian by nationality, passionate Cyber Security and i am on my journey of learning,
-                    additionally i am also passsionate with Data Science and Application Development,
-                    i think these will help me in my Cyber Security learning.
-                    <p> I'm also passionate of seeing changes in the technology ecosysytem in
-                        Tanzania (especially Zanzibar) and Africa at all. I'm strategically utilizing my proficient
-                        knowledge in
-                        Electronics, and Computer to bring the changes impactful technology changes.</p>
+                    I'm a passionate Full-Stack Developer and Team Leader from Tanzania, specializing in modern web technologies including Next.js, React, and Node.js. As Team Leader at Hima Technology, I lead development teams in creating cutting-edge web applications and digital solutions.
+                    
+                    <p>I'm particularly passionate about Cyber Security, Data Science, and Application Development. My expertise spans from frontend frameworks like Next.js and Svelte to backend technologies and mobile development. I'm committed to driving technological innovation in Tanzania, especially Zanzibar, and across Africa.</p>
+                    
+                    <p>My leadership experience combined with technical expertise allows me to effectively manage development teams while delivering high-quality software solutions that meet modern business needs.</p>
                 </div>
             </section>
-            <!-- work experience section -->
+
             <section>
                 <h2><strong>WORK EXPERIENCE</strong></h2>
                 <hr>
-                <b>YaNaS Gen Printing</b>
-                <p>(2019 - 2021)
-                <p>Work As:-</p>
-                </p>
-                <ul class="course">
-                    <li> Graphic Designer </li>
-                    <li> Digital Marketer </li>
-                    <li> IT Specialist</li>
-                    <li> Networker </li>
-                </ul>
 
-                <b>Zanzibar Managemant Authority (ZEMA)</b>
-                <p>(2022)
-                <p>Work As:-</p>
-                </p>
+                <b>Hima Technology <span class="leadership-badge">TEAM LEADER</span></b>
+                <p>(2023 - PRESENT)</p>
+                <p>Key Responsibilities:</p>
                 <ul class="course">
-                    <li> Installation Of Firewall</li>
-                    <li> Networking </li>
-                    <li>Web Development Link:<a href="https://zema.go.tz/" target="_blank">
-                    <li>zema.go.tz</li></a></li>
-                </ul>
-
-
-                <b>HM&Y Technology</b>
-                <p>(2023 - PRESENT)
-                <p>Work As:-</p>
-                </p>
-                <ul class="course">
-                    <li> Software Developer</li>
+                    <li>Lead development teams in Next.js projects</li>
+                    <li>Full-Stack Development (Next.js, Node.js, React)</li>
+                    <li>Project Management & Technical Leadership</li>
+                    <li>Code Review & Quality Assurance</li>
+                    <li>Client Relations & Technical Consulting</li>
                 </ul>
 
                 <b>TAMWA (Tanzania Media Woman's Association)</b>
-                <p>(2023 - PRESENT)
-                <p>Work As:-</p>
-                </p>
+                <p>(2023 - PRESENT)</p>
                 <ul class="course">
-                    <li> Software Developer </li>
-                    <li> IT Assistence </li>
-                </ul>                
-
-            </section>
-                <section>
-                    <h2><strong>MY PROJECTS</strong></h2>
-                    <hr>
-
-                <b>Bright Future Furniture System</b>
-                <p>(2022)
-                <p>Work As:-</p>
-                </p>
-                <ul class="course">
-                    <li> Full-stack Developer</li>
-                    <li> Javascript, jquery, ajax and php, </li>
-                    <li>Link:<a href="https://brightfuturefurniture.com" target="_blank">
-                    <li> brightfuturefurniture.com</li></a></li>
+                    <li>Software Developer</li>
+                    <li>IT Assistance</li>
                 </ul>
 
-                <b>Enjoy Family Zanzibar Tours</b>
-                <p>(2023)
-                <p>Work As:-</p>
-                </p>
+                <b>Zanzibar Management Authority (ZEMA)</b>
+                <p>(2022)</p>
                 <ul class="course">
-                    <li> Full-stack Developer</li>
-                    <li>Link:<a href="https://enjoyfamilyzanzibartours.co.tz" target="_blank">
-                    <li> enjoyfamilyzanzibartours.co.tz</li></a></li>
+                    <li>Installation Of Firewall</li>
+                    <li>Networking</li>
+                    <li>Web Development - <a href="https://zema.go.tz/" target="_blank">zema.go.tz</a></li>
+                </ul>
+
+                <b>YaNaS Gen Printing</b>
+                <p>(2019 - 2021)</p>
+                <ul class="course">
+                    <li>Graphic Designer</li>
+                    <li>Digital Marketer</li>
+                    <li>IT Specialist</li>
+                    <li>Network Administrator</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2><strong>KEY PROJECTS</strong></h2>
+                <hr>
+
+                <b>Hima Technology Website <span class="new-skill">NEXT.JS</span></b>
+                <p>(2024 - Team Leader & Lead Developer)</p>
+                <ul class="course">
+                    <li>Built with Next.js and modern web technologies</li>
+                    <li>Team Leadership & Project Management</li>
+                    <li>Link: <a href="https://www.himatech.co.tz" target="_blank">himatech.co.tz</a></li>
+                </ul>
+
+                <b>UKUEM Members Portal <span class="new-skill">SVELTE</span></b>
+                <p>(2024)</p>
+                <ul class="course">
+                    <li>Full-Stack Developer (Svelte + Slim Framework)</li>
+                    <li>Complete membership management system</li>
+                    <li>Link: <a href="http://members.ukuem.org/" target="_blank">members.ukuem.org</a></li>
                 </ul>
 
                 <b>Journeyers Tour And Safari</b>
-                <p>(2023)
-                <p>Work As:-</p>
-                </p>
+                <p>(2023)</p>
                 <ul class="course">
-                    <li> Full-stack Developer (React with Node js)</li>
-                    <li>Link:<a href="https://journeyerstoursafari.com/" target="_blank">
-                    <li> journeyerstoursafari.com</li></a></li>
+                    <li>Full-stack Developer (React with Node.js)</li>
+                    <li>Link: <a href="https://journeyerstoursafari.com/" target="_blank">journeyerstoursafari.com</a></li>
+                </ul>
+
+                <b>Enjoy Family Zanzibar Tours</b>
+                <p>(2023)</p>
+                <ul class="course">
+                    <li>Full-stack Developer</li>
+                    <li>Link: <a href="https://enjoyfamilyzanzibartours.co.tz" target="_blank">enjoyfamilyzanzibartours.co.tz</a></li>
                 </ul>
 
                 <b>ZAMECO Mobile App</b>
-                <p>(2023)
-                <p>Work As:-</p>
-                </p>
+                <p>(2023)</p>
                 <ul class="course">
-                    <li> Mobile Developer </li>
-
-                    <li>Link:<a href="https://zameco.tamwa.or.tz" target="_blank">
-                    <li> Zanzibar Medea Committee </li></a></li>
+                    <li>Mobile Developer</li>
+                    <li>Link: <a href="https://zameco.tamwa.or.tz" target="_blank">Zanzibar Media Committee</a></li>
                 </ul>
 
-
-                <b>Enviroment Permit System</b>
-                <p>(2023 - Present)
-                <p>Work As:-</p>
-                </p>
+                <b>Environment Permit System</b>
+                <p>(2023 - Present)</p>
                 <ul class="course">
-                    <li> Front-end Developer</li>
-
-                    <li>Link:<a href="https://proudzanzibarian.github.io/zemaSystem/" target="_blank">
-                    <li> Zanzibar Environmental Permit </li></a></li>
+                    <li>Frontend Developer</li>
+                    <li>Link: <a href="https://proudzanzibarian.github.io/zemaSystem/" target="_blank">Zanzibar Environmental Permit</a></li>
                 </ul>
 
-                <b>EDUGAMES Mobile App</b>
-                <p>(2023)
-                <p>Work As:-</p>
-                </p>
+                <b>Bright Future Furniture System</b>
+                <p>(2022)</p>
                 <ul class="course">
-                    <li> Mobile Developer </li>
-
-                    <li>Link:<a href="#" target="_blank">
-                    <li> Education Games Application</li></a></li>
+                    <li>Full-stack Developer</li>
+                    <li>Technologies: JavaScript, jQuery, AJAX, PHP</li>
+                    <li>Link: <a href="https://brightfuturefurniture.com" target="_blank">brightfuturefurniture.com</a></li>
                 </ul>
-
-                <!-- internship section -->
-                <h2><b><strong>INTERN</strong></b></h2>
-                <hr>
-                <p>
-                    <b> Zanzibar Management Authority| 2022</b>
-                </p>
-                <p>
-                    Designed different graphics stuffs such as Social Media Posters, Website, Logo, Brochures & Fliers
-                    that is used
-                    until now.
-                </p>
-                <ul class="intern">
-                    <li>Learn Android Studio</li>
-                    <li>Learned Configuration of printer, Routers & other Network Devices</li>
-                    <li>Learned Instalation Of firewall (Sophos) & Configuration</li>
-
-                </ul>
-
-                <b> YaNaS Gen Printing | 2019 - 2021</b>
-                </p>
-                <p>
-                    Designed different graphics stuffs such as Social Media Posters, Business Card Identity Card,
-                    Brochures & Fliers that is used
-                    until now.
-                </p>
-                <ul class="intern">
-                    <li>Learn Designing Using Adobe Photoshop and Adobe Illustrator</li>
-                </ul>
-
             </section>
+
             <section>
-                <h2><b><strong>CLUBS & COMMUNITIES</strong></b></h2>
+                <h2><strong>INTERNSHIPS</strong></h2>
                 <hr>
-                <p>
+
+                <b>Zanzibar Management Authority | 2022</b>
+                <p>Gained hands-on experience in network administration and security systems.</p>
+                <ul class="intern">
+                    <li>Learned Android Studio development</li>
+                    <li>Configuration of printers, routers & network devices</li>
+                    <li>Installation & configuration of firewall (Sophos)</li>
+                </ul>
+
+                <b>YaNaS Gen Printing | 2019 - 2021</b>
+                <p>Developed design and digital marketing skills.</p>
+                <ul class="intern">
+                    <li>Mastered Adobe Photoshop and Adobe Illustrator</li>
+                    <li>Created social media posters, business cards, brochures</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2><strong>CLUBS & COMMUNITIES</strong></h2>
+                <hr>
                 <ul class="clubs">
-                    <p> Suza Multimedia And Animation Club (SIC) | 2021 - 2023</p>
-                    <p> Suza Cyber Security Community | 2021 - 2023</p>
-                    <p> Suza Code {A} Thon | 2022 - </p>
-                    <p> Google Developer Student Club</p>
-                    <p> Suza Digital Earth Africa</p>
-
+                    <li>SUZA Multimedia And Animation Club (SIC) | 2021 - 2023</li>
+                    <li>SUZA Cyber Security Community | 2021 - 2023</li>
+                    <li>SUZA Code {A} Thon | 2022 - Present</li>
+                    <li>Google Developer Student Club SUZA</li>
+                    <li>SUZA Digital Earth Africa</li>
                 </ul>
-                </p>
             </section>
-
 
             <section>
-                <h2><b><strong>REFEREES</strong></b></h2>
+                <h2><strong>REFERENCES</strong></h2>
                 <hr>
-                <a href="tel:+255777459285"> Suleiman Hamiar Suleiman : Suza Lecturer : +255777459285 </a>
-                <br>
-                <br>
-                <a href="tel:+255779131616"> Abdulrahim Ramadhan Hassan : Maarif Haci Ayse Var School: Head Master :
-                    +255779131616 </a>
+                <p><a href="tel:+255777459285">Suleiman Hamiar Suleiman</a><br>
+                SUZA Lecturer<br>
+                +255777459285</p>
 
+                <p><a href="tel:+255779131616">Abdulrahim Ramadhan Hassan</a><br>
+                Head Master, Maarif Haci Ayse Var School<br>
+                +255779131616</p>
             </section>
-
         </article>
     </main>
 </body>
