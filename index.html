@@ -36,6 +36,7 @@
             color: var(--text-dark);
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
+            transition: all 0.3s ease;
         }
 
         .container {
@@ -47,6 +48,7 @@
             overflow: hidden;
             margin-top: 2rem;
             margin-bottom: 2rem;
+            position: relative;
         }
 
         #header {
@@ -441,25 +443,127 @@
             font-size: 0.9rem;
             color: var(--dark-gray);
         }
+        
+        /* Language Switcher Styles */
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 8px;
+            display: flex;
+            gap: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .lang-btn {
+            border: none;
+            background: transparent;
+            color: white;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .lang-btn.active {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .lang-btn:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        /* RTL Support */
+        [dir="rtl"] {
+            direction: rtl;
+            text-align: right;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        [dir="rtl"] .section-icon {
+            margin-right: 0;
+            margin-left: 0.5rem;
+        }
+        
+        [dir="rtl"] .achievement-list li:before,
+        [dir="rtl"] .responsibility-list li:before {
+            left: auto;
+            right: 0;
+        }
+        
+        [dir="rtl"] .achievement-list li,
+        [dir="rtl"] .responsibility-list li {
+            padding-left: 0;
+            padding-right: 1.5rem;
+        }
+        
+        [dir="rtl"] .contact-item i {
+            margin-right: 0;
+            margin-left: 0.5rem;
+        }
+        
+        [dir="rtl"] .skill-item {
+            flex-direction: row-reverse;
+        }
+        
+        [dir="rtl"] .language-switcher {
+            right: auto;
+            left: 20px;
+        }
+        
+        [dir="rtl"] section {
+            border-left: none;
+            border-right: 4px solid var(--primary-blue);
+        }
+        
+        [dir="rtl"] .experience-item,
+        [dir="rtl"] .project-item,
+        [dir="rtl"] .education-item {
+            border-left: none;
+            border-right: 4px solid var(--accent-gold);
+        }
+        
+        [dir="rtl"] .certification-item {
+            border-left: none;
+            border-right: 3px solid var(--success-green);
+        }
+        
+        [dir="rtl"] .award-item {
+            border-left: none;
+            border-right: 4px solid var(--accent-gold);
+        }
     </style>
     <title>Usama Talib Juma - Advanced Resume</title>
 </head>
 
 <body>
     <div class="container">
+        <!-- Language Switcher -->
+        <div class="language-switcher">
+            <button id="lang-en" class="lang-btn active">English</button>
+            <button id="lang-ar" class="lang-btn">العربية</button>
+        </div>
+        
         <header id="header">
             <div class="header-content">
                 <h1><b>USAMA</b> TALIB JUMA</h1>
                 <div class="divider"></div>
-                <div class="subtitle">FULL-STACK DEVELOPER & TEAM LEADER</div>
-                <div class="tagline">Transforming Ideas into Scalable Digital Solutions | 5+ Years Experience</div>
+                <div class="subtitle" id="subtitle">FULL-STACK DEVELOPER & TEAM LEADER</div>
+                <div class="tagline" id="tagline">Transforming Ideas into Scalable Digital Solutions | 5+ Years Experience</div>
             </div>
         </header>
 
         <main>
             <article id="mainLeft">
                 <section>
-                    <h2><i class="fas fa-address-book section-icon"></i>CONTACT</h2>
+                    <h2><i class="fas fa-address-book section-icon"></i><span id="contactTitle">CONTACT</span></h2>
                     <div class="contact-item">
                         <i class="fab fa-github"></i>
                         <a href="https://github.com/Hima-Technology" target="_blank">Hima Technology GitHub</a>
@@ -493,17 +597,17 @@
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>Zanzibar, Tanzania</span>
+                        <span id="location">Zanzibar, Tanzania</span>
                     </div>
                 </section>
 
                 <section>
-                    <h2><i class="fas fa-code section-icon"></i>TECHNICAL EXPERTISE</h2>
+                    <h2><i class="fas fa-code section-icon"></i><span id="skillsTitle">TECHNICAL EXPERTISE</span></h2>
 
                     <div class="skill-category">
-                        <h3><i class="fas fa-laptop-code"></i>Frontend Development</h3>
+                        <h3><i class="fas fa-laptop-code"></i><span id="frontendTitle">Frontend Development</span></h3>
                         <div class="skill-item">
-                            <span>Next.js <span class="badge badge-advanced">Advanced</span></span>
+                            <span>Next.js <span class="badge badge-advanced" id="advanced-badge">Advanced</span></span>
                             <div class="skill-level">
                                 <div class="skill-dot filled"></div>
                                 <div class="skill-dot filled"></div>
@@ -523,12 +627,12 @@
                             </div>
                         </div>
                         <div class="skill-item">
-                            <span>Svelte <span class="badge badge-new">Learning</span></span>
+                            <span>Svelte <span class="badge badge-new" id="learningBadge">Learning</span></span>
                             <div class="skill-level">
                                 <div class="skill-dot filled"></div>
                                 <div class="skill-dot filled"></div>
                                 <div class="skill-dot filled"></div>
-                                <div class="skill-dot"></div>
+                                <div class="skill-dot filled"></div>
                                 <div class="skill-dot"></div>
                             </div>
                         </div>
@@ -555,7 +659,7 @@
                     </div>
 
                     <div class="skill-category">
-                        <h3><i class="fas fa-server"></i>Backend Development</h3>
+                        <h3><i class="fas fa-server"></i><span id="backendTitle">Backend Development</span></h3>
                         <div class="skill-item">
                             <span>Node.js</span>
                             <div class="skill-level">
@@ -599,7 +703,7 @@
                     </div>
 
                     <div class="skill-category">
-                        <h3><i class="fas fa-database"></i>Databases & DevOps</h3>
+                        <h3><i class="fas fa-database"></i><span id="devopsTitle">Databases & DevOps</span></h3>
                         <div class="skill-item">
                             <span>MySQL/PostgreSQL</span>
                             <div class="skill-level">
@@ -630,104 +734,93 @@
                                 <div class="skill-dot filled"></div>
                             </div>
                         </div>
-                        <!-- <div class="skill-item">
-                            <span>Docker & Containers</span>
-                            <div class="skill-level">
-                                <div class="skill-dot filled"></div>
-                                <div class="skill-dot filled"></div>
-                                <div class="skill-dot filled"></div>
-                                <div class="skill-dot"></div>
-                                <div class="skill-dot"></div>
-                            </div>
-                        </div>
-                        -->
                     </div>
 
                     <div class="skill-category">
-                        <h3><i class="fas fa-shield-alt"></i>Leadership & Management</h3>
+                        <h3><i class="fas fa-shield-alt"></i><span id="leadershipTitle">Leadership & Management</span></h3>
                         <div class="skill-item">
-                            <span>Team Leadership <span class="badge badge-leader">5+ Years</span></span>
+                            <span><span id="teamLead">Team Leadership</span> <span class="badge badge-leader" id="years-exp">5+ Years</span></span>
                         </div>
                         <div class="skill-item">
-                            <span>Agile/Scrum Methodology</span>
+                            <span><span id="agile">Agile/Scrum Methodology</span></span>
                         </div>
                         <div class="skill-item">
-                            <span>Project Management</span>
+                            <span><span id="projectManage">Project Management</span></span>
                         </div>
                         <div class="skill-item">
-                            <span>Client Relations</span>
+                            <span><span id="clientRelations">Client Relations</span></span>
                         </div>
                     </div>
                 </section>
 
                 <section>
-                    <h2><i class="fas fa-certificate section-icon"></i>CERTIFICATIONS</h2>
+                    <h2><i class="fas fa-certificate section-icon"></i><span id="certsTitle">CERTIFICATIONS</span></h2>
                     <div class="certification-item">
                         <div class="cert-info">
-                            <div class="cert-name">Agile Project Management</div>
-                            <div class="cert-issuer">HP LIFE - 2024</div>
+                            <div class="cert-name" id="cert1">Agile Project Management</div>
+                            <div class="cert-issuer" id="cert1Issuer">HP LIFE - 2024</div>
+                        </div>
+                        <span class="badge badge-certified" id="certifiedBadge">Certified</span>
+                    </div>
+                    <div class="certification-item">
+                        <div class="cert-info">
+                            <div class="cert-name" id="cert2">Digital Business Skills</div>
+                            <div class="cert-issuer" id="cert2Issuer">HP LIFE - 2024</div>
                         </div>
                         <span class="badge badge-certified">Certified</span>
                     </div>
                     <div class="certification-item">
                         <div class="cert-info">
-                            <div class="cert-name">Digital Business Skills</div>
-                            <div class="cert-issuer">HP LIFE - 2024</div>
+                            <div class="cert-name" id="cert3">Effective Leadership</div>
+                            <div class="cert-issuer" id="cert3Issuer">HP LIFE - 2024</div>
                         </div>
                         <span class="badge badge-certified">Certified</span>
                     </div>
                     <div class="certification-item">
                         <div class="cert-info">
-                            <div class="cert-name">Effective Leadership</div>
-                            <div class="cert-issuer">HP LIFE - 2024</div>
-                        </div>
-                        <span class="badge badge-certified">Certified</span>
-                    </div>
-                    <div class="certification-item">
-                        <div class="cert-info">
-                            <div class="cert-name">Cybersecurity Awareness</div>
-                            <div class="cert-issuer">HP LIFE - 2024</div>
+                            <div class="cert-name" id="cert4">Cybersecurity Awareness</div>
+                            <div class="cert-issuer" id="cert4Issuer">HP LIFE - 2024</div>
                         </div>
                         <span class="badge badge-certified">Certified</span>
                     </div>
                 </section>
 
                 <section>
-                    <h2><i class="fas fa-language section-icon"></i>LANGUAGES</h2>
+                    <h2><i class="fas fa-language section-icon"></i><span id="langsTitle">LANGUAGES</span></h2>
                     <div class="languages-grid">
                         <div class="language-item">
-                            <div class="language-name">English</div>
-                            <div class="language-level">Fluent</div>
+                            <div class="language-name" id="lang1">English</div>
+                            <div class="language-level" id="lang1Level">Fluent</div>
                         </div>
                         <div class="language-item">
-                            <div class="language-name">Swahili</div>
-                            <div class="language-level">Native</div>
+                            <div class="language-name" id="lang2">Swahili</div>
+                            <div class="language-level" id="lang2Level">Native</div>
                         </div>
                         <div class="language-item">
-                            <div class="language-name">Arabic</div>
-                            <div class="language-level">Conversational</div>
+                            <div class="language-name" id="lang3">Arabic</div>
+                            <div class="language-level" id="lang3Level">Conversational</div>
                         </div>
                     </div>
                 </section>
 
                 <section>
-                    <h2><i class="fas fa-chart-line section-icon"></i>CAREER STATISTICS</h2>
+                    <h2><i class="fas fa-chart-line section-icon"></i><span id="statsTitle">CAREER STATISTICS</span></h2>
                     <div class="stats-grid">
                         <div class="stat-item">
                             <span class="stat-number">10+</span>
-                            <span class="stat-label">Projects Completed</span>
+                            <span class="stat-label" id="projectsLabel">Projects Completed</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number">3+</span>
-                            <span class="stat-label">Years Experience</span>
+                            <span class="stat-label" id="experienceLabel">Years Experience</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number">3+</span>
-                            <span class="stat-label">Team Members Led</span>
+                            <span class="stat-label" id="teamLabel">Team Members Led</span>
                         </div>
                         <div class="stat-item">
                             <span class="stat-number">98%</span>
-                            <span class="stat-label">Client Satisfaction</span>
+                            <span class="stat-label" id="satisfactionLabel">Client Satisfaction</span>
                         </div>
                     </div>
                 </section>
@@ -735,132 +828,117 @@
 
             <article id="mainRight">
                 <section>
-                    <h2><i class="fas fa-user section-icon"></i>PROFESSIONAL SUMMARY</h2>
+                    <h2><i class="fas fa-user section-icon"></i><span id="summaryTitle">PROFESSIONAL SUMMARY</span></h2>
                     <div class="about-text">
-                        <p>Experienced <span class="highlight">Full-Stack Developer and Team Leader</span> with 5+ years
-                            of expertise in modern web technologies, specializing in Next.js, React, and Node.js
-                            ecosystems. Currently serving as Team Leader at Hima Technology, where I lead
-                            cross-functional development teams in delivering cutting-edge web applications and digital
-                            solutions.</p>
+                        <p><span id="summary1">Experienced</span> <span class="highlight"><span id="highlight1">Full-Stack Developer and Team Leader</span></span> <span id="summary2">with 5+ years of expertise in modern web technologies, specializing in Next.js, React, and Node.js ecosystems. Currently serving as Team Leader at Hima Technology, where I lead cross-functional development teams in delivering cutting-edge web applications and digital solutions.</span></p>
 
-                        <p>My unique combination of technical proficiency and leadership experience enables me to bridge
-                            the gap between complex technical requirements and business objectives. I excel in <span
-                                class="highlight">agile environments</span>, having successfully managed multiple
-                            concurrent projects while maintaining high code quality and team productivity.</p>
+                        <p><span id="summary3">My unique combination of technical proficiency and leadership experience enables me to bridge the gap between complex technical requirements and business objectives. I excel in</span> <span class="highlight"><span id="highlight2">agile environments</span></span><span id="summary4">, having successfully managed multiple concurrent projects while maintaining high code quality and team productivity.</span></p>
 
-                        <p>Passionate about <span class="highlight">emerging technologies</span>, cybersecurity, and
-                            data-driven solutions. My freelance work with organizations like TAMWA Zanzibar demonstrates
-                            my ability to adapt quickly to diverse project requirements while delivering exceptional
-                            results within tight deadlines.</p>
+                        <p><span id="summary5">Passionate about</span> <span class="highlight"><span id="highlight3">emerging technologies</span></span><span id="summary6">, cybersecurity, and data-driven solutions. My freelance work with organizations like TAMWA Zanzibar demonstrates my ability to adapt quickly to diverse project requirements while delivering exceptional results within tight deadlines.</span></p>
 
-                        <p>Committed to continuous learning and knowledge sharing, I actively participate in developer
-                            communities and mentor junior developers in modern web development practices and agile
-                            methodologies.</p>
+                        <p><span id="summary7">Committed to continuous learning and knowledge sharing, I actively participate in developer communities and mentor junior developers in modern web development practices and agile methodologies.</span></p>
                     </div>
                 </section>
 
                 <section>
-                    <h2><i class="fas fa-briefcase section-icon"></i>PROFESSIONAL EXPERIENCE</h2>
+                    <h2><i class="fas fa-briefcase section-icon"></i><span id="experienceTitle">PROFESSIONAL EXPERIENCE</span></h2>
 
                     <div class="experience-item">
                         <div class="experience-title">
                             <i class="fas fa-crown"></i>
-                            Team Leader & Senior Full-Stack Developer
-                            <span class="badge badge-leader">Current</span>
+                            <span id="job1Title">Team Leader & Senior Full-Stack Developer</span>
+                            <span class="badge badge-leader" id="current">Current</span>
                         </div>
-                        <div class="experience-duration">Hima Technology | 2023 - Present</div>
+                        <div class="experience-duration" id="job1Duration">Hima Technology | 2023 - Present</div>
                         <ul class="responsibility-list">
-                            <li>Lead and mentor a team of 3+ developers in Next.js and React-based projects</li>
-                            <li>Architect and implement scalable full-stack solutions using modern technologies</li>
-                            <li>Manage project timelines, resource allocation, and client communications</li>
-                            <li>Conduct code reviews and establish development best practices</li>
-                            <li>Collaborate with stakeholders to translate business requirements into technical
-                                solutions</li>
-                            <li>Implement CI/CD pipelines and deployment strategies</li>
-                            <li>Achieved 98% client satisfaction rate and 40% improvement in project delivery time</li>
+                            <li id="job1_1">Lead and mentor a team of 3+ developers in Next.js and React-based projects</li>
+                            <li id="job1_2">Architect and implement scalable full-stack solutions using modern technologies</li>
+                            <li id="job1_3">Manage project timelines, resource allocation, and client communications</li>
+                            <li id="job1_4">Conduct code reviews and establish development best practices</li>
+                            <li id="job1_5">Collaborate with stakeholders to translate business requirements into technical solutions</li>
+                            <li id="job1_6">Implement CI/CD pipelines and deployment strategies</li>
+                            <li id="job1_7">Achieved 98% client satisfaction rate and 40% improvement in project delivery time</li>
                         </ul>
                     </div>
 
                     <div class="experience-item">
                         <div class="experience-title">
                             <i class="fas fa-laptop-code"></i>
-                            Freelance IT Specialist & Software Developer
+                            <span id="job2Title">Freelance IT Specialist & Software Developer</span>
                         </div>
-                        <div class="experience-duration">TAMWA Zanzibar (Tanzania Media Women's Association) | 2024 -
-                            Present</div>
-                        <div style="margin-bottom: 0.8rem; font-style: italic; color: var(--dark-gray);">Part-time: 2
-                            days per week</div>
+                        <div class="experience-duration" id="job2Duration">TAMWA Zanzibar (Tanzania Media Women's Association) | 2024 - Present</div>
+                        <div style="margin-bottom: 0.8rem; font-style: italic; color: var(--dark-gray);" id="partTime">Part-time: 2 days per week</div>
                         <ul class="responsibility-list">
-                            <li>Design and develop custom software solutions for media and communication needs</li>
-                            <li>Provide comprehensive IT support and system maintenance</li>
-                            <li>Implement digital transformation strategies for organizational efficiency</li>
-                            <li>Train staff on new technologies and digital tools</li>
-                            <li>Manage database systems and ensure data security compliance</li>
+                            <li id="job2_1">Design and develop custom software solutions for media and communication needs</li>
+                            <li id="job2_2">Provide comprehensive IT support and system maintenance</li>
+                            <li id="job2_3">Implement digital transformation strategies for organizational efficiency</li>
+                            <li id="job2_4">Train staff on new technologies and digital tools</li>
+                            <li id="job2_5">Manage database systems and ensure data security compliance</li>
                         </ul>
                     </div>
 
                     <div class="experience-item">
                         <div class="experience-title">
                             <i class="fas fa-mobile-alt"></i>
-                            Mobile Application Developer
+                            <span id="job3Title">Mobile Application Developer</span>
                         </div>
-                        <div class="experience-duration">HM&Y Technology | 2023 - 2024</div>
+                        <div class="experience-duration" id="job3Duration">HM&Y Technology | 2023 - 2024</div>
                         <ul class="responsibility-list">
-                            <li>Developed EDUGAMES mobile application using React Native and Android Studio</li>
-                            <li>Implemented educational technology solutions for enhanced learning experiences</li>
-                            <li>Collaborated with UI/UX designers to create intuitive user interfaces</li>
-                            <li>Integrated APIs and third-party services for enhanced functionality</li>
-                            <li>Conducted testing and quality assurance for mobile applications</li>
+                            <li id="job3_1">Developed EDUGAMES mobile application using React Native and Android Studio</li>
+                            <li id="job3_2">Implemented educational technology solutions for enhanced learning experiences</li>
+                            <li id="job3_3">Collaborated with UI/UX designers to create intuitive user interfaces</li>
+                            <li id="job3_4">Integrated APIs and third-party services for enhanced functionality</li>
+                            <li id="job3_5">Conducted testing and quality assurance for mobile applications</li>
                         </ul>
                     </div>
 
                     <div class="experience-item">
                         <div class="experience-title">
                             <i class="fas fa-network-wired"></i>
-                            Network & Web Development Specialist
+                            <span id="job4Title">Network & Web Development Specialist</span>
                         </div>
-                        <div class="experience-duration">Zanzibar Management Authority (ZEMA) | 2022</div>
+                        <div class="experience-duration" id="job4Duration">Zanzibar Management Authority (ZEMA) | 2022</div>
                         <ul class="responsibility-list">
-                            <li>Designed and developed the official ZEMA website (zema.go.tz)</li>
-                            <li>Implemented firewall solutions and network security protocols</li>
-                            <li>Configured network infrastructure and security systems</li>
-                            <li>Provided technical consultation on IT infrastructure improvements</li>
-                            <li>Established cybersecurity best practices for government operations</li>
+                            <li id="job4_1">Designed and developed the official ZEMA website (zema.go.tz)</li>
+                            <li id="job4_2">Implemented firewall solutions and network security protocols</li>
+                            <li id="job4_3">Configured network infrastructure and security systems</li>
+                            <li id="job4_4">Provided technical consultation on IT infrastructure improvements</li>
+                            <li id="job4_5">Established cybersecurity best practices for government operations</li>
                         </ul>
                     </div>
 
                     <div class="experience-item">
                         <div class="experience-title">
                             <i class="fas fa-paint-brush"></i>
-                            Graphics Designer & Digital Marketing Specialist
+                            <span id="job5Title">Graphics Designer & Digital Marketing Specialist</span>
                         </div>
-                        <div class="experience-duration">YaNaS Gen Printing | 2019 - 2021</div>
+                        <div class="experience-duration" id="job5Duration">YaNaS Gen Printing | 2019 - 2021</div>
                         <ul class="responsibility-list">
-                            <li>Created comprehensive brand identities and marketing materials</li>
-                            <li>Managed social media campaigns and digital marketing strategies</li>
-                            <li>Designed print materials including brochures, business cards, and posters</li>
-                            <li>Administered network systems and provided IT support</li>
-                            <li>Increased client engagement by 60% through innovative design solutions</li>
+                            <li id="job5_1">Created comprehensive brand identities and marketing materials</li>
+                            <li id="job5_2">Managed social media campaigns and digital marketing strategies</li>
+                            <li id="job5_3">Designed print materials including brochures, business cards, and posters</li>
+                            <li id="job5_4">Administered network systems and provided IT support</li>
+                            <li id="job5_5">Increased client engagement by 60% through innovative design solutions</li>
                         </ul>
                     </div>
                 </section>
 
                 <section>
-                    <h2><i class="fas fa-project-diagram section-icon"></i>KEY PROJECTS & ACHIEVEMENTS</h2>
+                    <h2><i class="fas fa-project-diagram section-icon"></i><span id="projectsTitle">KEY PROJECTS & ACHIEVEMENTS</span></h2>
 
                     <div class="project-item">
                         <div class="project-title">
                             <i class="fas fa-rocket"></i>
-                            Hima Technology Corporate Website
+                            <span id="project1Title">Hima Technology Corporate Website</span>
                             <span class="badge badge-advanced">Next.js</span>
                         </div>
-                        <div class="project-duration">2024 | Team Leader & Lead Developer</div>
+                        <div class="project-duration" id="project1Duration">2024 | Team Leader & Lead Developer</div>
                         <ul class="achievement-list">
-                            <li>Led team of 3 developers in building modern corporate website</li>
-                            <li>Implemented server-side rendering and SEO optimization</li>
-                            <li>Integrated advanced analytics and performance monitoring</li>
-                            <li>Achieved 95+ Google PageSpeed score and mobile responsiveness</li>
-                            <li><strong>Live:</strong> <a href="https://www.himatech.co.tz"
+                            <li id="project1_1">Led team of 3 developers in building modern corporate website</li>
+                            <li id="project1_2">Implemented server-side rendering and SEO optimization</li>
+                            <li id="project1_3">Integrated advanced analytics and performance monitoring</li>
+                            <li id="project1_4">Achieved 95+ Google PageSpeed score and mobile responsiveness</li>
+                            <li><strong id="live1">Live:</strong> <a href="https://www.himatech.co.tz"
                                     target="_blank">himatech.co.tz</a></li>
                         </ul>
                     </div>
@@ -868,16 +946,16 @@
                     <div class="project-item">
                         <div class="project-title">
                             <i class="fas fa-users"></i>
-                            UKUEM Members Portal
+                            <span id="project2Title">UKUEM Members Portal</span>
                             <span class="badge badge-new">Svelte</span>
                         </div>
-                        <div class="project-duration">2024 | Full-Stack Developer</div>
+                        <div class="project-duration" id="project2Duration">2024 | Full-Stack Developer</div>
                         <ul class="achievement-list">
-                            <li>Developed comprehensive membership management system</li>
-                            <li>Built with Svelte frontend and Slim Framework backend</li>
-                            <li>Implemented user authentication and role-based permissions</li>
-                            <li>Created automated reporting and data analytics dashboard</li>
-                            <li><strong>Live:</strong> <a href="http://members.ukuem.org/"
+                            <li id="project2_1">Developed comprehensive membership management system</li>
+                            <li id="project2_2">Built with Svelte frontend and Slim Framework backend</li>
+                            <li id="project2_3">Implemented user authentication and role-based permissions</li>
+                            <li id="project2_4">Created automated reporting and data analytics dashboard</li>
+                            <li><strong id="live2">Live:</strong> <a href="http://members.ukuem.org/"
                                     target="_blank">members.ukuem.org</a></li>
                         </ul>
                     </div>
@@ -885,211 +963,198 @@
                     <div class="project-item">
                         <div class="project-title">
                             <i class="fas fa-mobile-alt"></i>
-                            ZAMECO Mobile Application
+                            <span id="project3Title">ZAMECO Mobile Application</span>
                         </div>
-                        <div class="project-duration">2023 | Mobile Developer (PWA)</div>
+                        <div class="project-duration" id="project3-duration">2023 | Mobile Developer (PWA)</div>
                         <ul class="achievement-list">
-                            <li>Developed media management mobile application</li>
-                            <li>Implemented real-time notifications and content management</li>
-                            <li>Created offline functionality and data synchronization</li>
-                            <!-- <li>Deployed to both Android and iOS platforms</li>-->
-                            <li><strong>Live:</strong> <a href="https://www.zameco.tamwaznz.co.tz"
+                            <li id="project3_1">Developed media management mobile application</li>
+                            <li id="project3_2">Implemented real-time notifications and content management</li>
+                            <li id="project3_3">Created offline functionality and data synchronization</li>
+                            <li><strong id="live3">Live:</strong> <a href="https://www.zameco.tamwaznz.co.tz"
                                     target="_blank">ZAMECO</a></li>
-
-
                         </ul>
                     </div>
-
 
                     <div class="project-item">
                         <div class="project-title">
                             <i class="fas fa-map-marked-alt"></i>
-                            Tourism & Safari Platforms
+                            <span id="project4Title">Tourism & Safari Platforms</span>
                         </div>
-                        <div class="project-duration">2023 | Full-Stack Developer</div>
+                        <div class="project-duration" id="project4Duration">2023 | Full-Stack Developer</div>
                         <ul class="achievement-list">
-                            <li><strong>Journeyers Tour And Safari:</strong> React + Node.js platform with booking
-                                system</li>
-                            <li><strong>Enjoy Family Zanzibar Tours:</strong> Custom CMS and tour management</li>
-                            <li>Integrated payment gateways and booking management systems</li>
-                            <li>Implemented multi-language support and mobile optimization</li>
-                            <li>Increased online bookings by 150% for both platforms</li>
+                            <li id="project4_1"><strong>Journeyers Tour And Safari:</strong> React + Node.js platform with booking system</li>
+                            <li id="project4_2"><strong>Enjoy Family Zanzibar Tours:</strong> Custom CMS and tour management</li>
+                            <li id="project4_3">Integrated payment gateways and booking management systems</li>
+                            <li id="project4_4">Implemented multi-language support and mobile optimization</li>
+                            <li id="project4_5">Increased online bookings by 150% for both platforms</li>
                         </ul>
                     </div>
-
 
                     <div class="project-item">
                         <div class="project-title">
                             <i class="fas fa-leaf"></i>
-                            Environment Permit System
+                            <span id="project5Title">Environment Permit System</span>
                         </div>
-                        <div class="project-duration">2023 - Present | Frontend Developer</div>
+                        <div class="project-duration" id="project5Duration">2023 - Present | Frontend Developer</div>
                         <ul class="achievement-list">
-                            <li>Developed government permit application system</li>
-                            <li>Implemented complex form validation and document management</li>
-                            <li>Created user-friendly interface for environmental compliance</li>
-                            <li>Integrated with government databases and APIs</li>
+                            <li id="project5_1">Developed government permit application system</li>
+                            <li id="project5_2">Implemented complex form validation and document management</li>
+                            <li id="project5_3">Created user-friendly interface for environmental compliance</li>
+                            <li id="project5_4">Integrated with government databases and APIs</li>
                         </ul>
                     </div>
                 </section>
 
                 <section>
-                    <h2><i class="fas fa-trophy section-icon"></i>AWARDS & RECOGNITION</h2>
+                    <h2><i class="fas fa-trophy section-icon"></i><span id="awardsTitle">AWARDS & RECOGNITION</span></h2>
 
                     <div class="award-item">
                         <div class="award-title">
                             <i class="fas fa-medal"></i>
-                            11th Position - Machine Learning Model Building Hackathon
+                            <span id="award1">11th Position - Machine Learning Model Building Hackathon</span>
                         </div>
-                        <div class="award-details">Africa-wide Competition | 2022 | Competed against 500+ participants
-                        </div>
+                        <div class="award-details" id="award1Deetails">Africa-wide Competition | 2022 | Competed against 500+ participants</div>
                     </div>
 
                     <div class="award-item">
                         <div class="award-title">
                             <i class="fas fa-code"></i>
-                            2nd Position - Code in the Dark Competition
+                            <span id="award2">2nd Position - Code in the Dark Competition</span>
                         </div>
-                        <div class="award-details">Google Developer Students Club SUZA | 2023 | Offline coding challenge
-                        </div>
+                        <div class="award-details" id="award2Details">Google Developer Students Club SUZA | 2023 | Offline coding challenge</div>
                     </div>
 
                     <div class="award-item">
                         <div class="award-title">
                             <i class="fas fa-star"></i>
-                            Outstanding Leadership Award
+                            <span id="award3">Outstanding Leadership Award</span>
                         </div>
-                        <div class="award-details">Hima Technology | 2024 | Team performance and project delivery
-                            excellence</div>
+                        <div class="award-details" id="award3Details">Hima Technology | 2024 | Team performance and project delivery excellence</div>
                     </div>
                 </section>
 
                 <section>
-                    <h2><i class="fas fa-graduation-cap section-icon"></i>EDUCATION & TRAINING</h2>
+                    <h2><i class="fas fa-graduation-cap section-icon"></i><span id="educationTitle">EDUCATION & TRAINING</span></h2>
 
                     <div class="education-item">
                         <div class="experience-title">
                             <i class="fas fa-university"></i>
-                            Diploma in Information Technology
+                            <span id="edu1Title">Diploma in Information Technology</span>
                         </div>
-                        <div class="experience-duration">The State University of Zanzibar (SUZA) | 2022 - 2023</div>
-                        <div style="margin-bottom: 1rem; font-weight: 600;">Relevant Coursework:</div>
+                        <div class="experience-duration" id="edu1Duration">The State University of Zanzibar (SUZA) | 2022 - 2023</div>
+                        <div style="margin-bottom: 1rem; font-weight: 600;" id="coursesTitle">Relevant Coursework:</div>
                         <ul class="responsibility-list">
-                            <li>Advanced Programming & Software Engineering</li>
-                            <li>Database Systems & Data Management</li>
-                            <li>System Analysis & Design</li>
-                            <li>Computer Networks & Security</li>
-                            <li>Mobile Application Development</li>
-                            <li>Linux System Administration</li>
-                            <li>Web Technologies & UI/UX Design</li>
+                            <li id="course1">Advanced Programming & Software Engineering</li>
+                            <li id="course2">Database Systems & Data Management</li>
+                            <li id="course3">System Analysis & Design</li>
+                            <li id="course4">Computer Networks & Security</li>
+                            <li id="course5">Mobile Application Development</li>
+                            <li id="course6">Linux System Administration</li>
+                            <li id="course7">Web Technologies & UI/UX Design</li>
                         </ul>
                     </div>
 
                     <div class="education-item">
                         <div class="experience-title">
                             <i class="fas fa-school"></i>
-                            Advanced Level Education (Science Track)
+                            <span id="edu2Title">Advanced Level Education (Science Track)</span>
                         </div>
-                        <div class="experience-duration">Maarif Haci Ayse Var School | 2018 - 2021</div>
+                        <div class="experience-duration" id="edu2-duration">Maarif Haci Ayse Var School | 2018 - 2021</div>
                         <ul class="responsibility-list">
-                            <li>Mathematics & Applied Mathematics</li>
-                            <li>Chemistry & Biology</li>
-                            <li>Geography & General Studies</li>
-                            <li>Strong foundation in analytical thinking and problem-solving</li>
+                            <li id="subject1">Mathematics & Applied Mathematics</li>
+                            <li id="subject2">Chemistry & Biology</li>
+                            <li id="subject3">Geography & General Studies</li>
+                            <li id="subject4">Strong foundation in analytical thinking and problem-solving</li>
                         </ul>
                     </div>
                 </section>
 
                 <section>
-                    <h2><i class="fas fa-handshake section-icon"></i>PROFESSIONAL DEVELOPMENT</h2>
+                    <h2><i class="fas fa-handshake section-icon"></i><span id="devTitle">PROFESSIONAL DEVELOPMENT</span></h2>
 
                     <div class="experience-item">
                         <div class="experience-title">
                             <i class="fas fa-building"></i>
-                            Network Administration Intern
+                            <span id="intern1Title">Network Administration Intern</span>
                         </div>
-                        <div class="experience-duration">Zanzibar Management Authority (ZEMA) | 2022</div>
+                        <div class="experience-duration" id="intern1Duration">Zanzibar Management Authority (ZEMA) | 2022</div>
                         <ul class="responsibility-list">
-                            <li>Hands-on experience with enterprise network configuration</li>
-                            <li>Sophos firewall installation and security protocols</li>
-                            <li>Android Studio development and mobile security</li>
-                            <li>Government IT infrastructure management</li>
+                            <li id="intern1_1">Hands-on experience with enterprise network configuration</li>
+                            <li id="intern1_2">Sophos firewall installation and security protocols</li>
+                            <li id="intern1_3">Android Studio development and mobile security</li>
+                            <li id="intern1_4">Government IT infrastructure management</li>
                         </ul>
                     </div>
 
                     <div class="experience-item">
                         <div class="experience-title">
                             <i class="fas fa-paint-brush"></i>
-                            Design & Marketing Intern
+                            <span id="intern2Title">Design & Marketing Intern</span>
                         </div>
-                        <div class="experience-duration">YaNaS Gen Printing | 2019 - 2021</div>
+                        <div class="experience-duration" id="intern2Duration">YaNaS Gen Printing | 2019 - 2021</div>
                         <ul class="responsibility-list">
-                            <li>Mastered Adobe Creative Suite (Photoshop, Illustrator)</li>
-                            <li>Developed brand identity and marketing materials</li>
-                            <li>Social media management and digital marketing campaigns</li>
-                            <li>Print design and production workflow management</li>
+                            <li id="intern2_1">Mastered Adobe Creative Suite (Photoshop, Illustrator)</li>
+                            <li id="intern2_2">Developed brand identity and marketing materials</li>
+                            <li id="intern2_3">Social media management and digital marketing campaigns</li>
+                            <li id="intern2_4">Print design and production workflow management</li>
                         </ul>
                     </div>
                 </section>
 
                 <section>
-                    <h2><i class="fas fa-users section-icon"></i>COMMUNITY & LEADERSHIP</h2>
+                    <h2><i class="fas fa-users section-icon"></i><span id="communityTitle">COMMUNITY & LEADERSHIP</span></h2>
 
                     <ul class="responsibility-list">
-                        <li><strong>SUZA Multimedia And Animation Club (SIC)</strong> - Active Member | 2021 - 2023</li>
-                        <li><strong>SUZA Cyber Security Community</strong> - Security Researcher | 2021 - 2023</li>
-                        <li><strong>SUZA Code {A} Thon</strong> - Mentor & Organizer | 2022 - Present</li>
-                        <li><strong>Google Developer Student Club SUZA</strong> - Technical Lead | 2022 - 2023</li>
-                        <li><strong>SUZA Digital Earth Africa</strong> - Data Science Contributor | 2022 - 2023</li>
-                        <li><strong>Tanzania Tech Community</strong> - Workshop Facilitator | 2023 - Present</li>
+                        <li id="community1"><strong>SUZA Multimedia And Animation Club (SIC)</strong> - Active Member | 2021 - 2023</li>
+                        <li id="community2"><strong>SUZA Cyber Security Community</strong> - Security Researcher | 2021 - 2023</li>
+                        <li id="community3"><strong>SUZA Code {A} Thon</strong> - Mentor & Organizer | 2022 - Present</li>
+                        <li id="community4"><strong>Google Developer Student Club SUZA</strong> - Technical Lead | 2022 - 2023</li>
+                        <li id="community5"><strong>SUZA Digital Earth Africa</strong> - Data Science Contributor | 2022 - 2023</li>
+                        <li id="community6"><strong>Tanzania Tech Community</strong> - Workshop Facilitator | 2023 - Present</li>
                     </ul>
                 </section>
 
                 <section>
-                    <h2><i class="fas fa-bullseye section-icon"></i>CORE COMPETENCIES</h2>
+                    <h2><i class="fas fa-bullseye section-icon"></i><span id="competenciesTitle">CORE COMPETENCIES</span></h2>
 
                     <div class="stats-grid">
                         <div class="stat-item">
                             <i class="fas fa-users"
                                 style="font-size: 1.5rem; color: var(--primary-blue); margin-bottom: 0.5rem;"></i>
-                            <div style="font-weight: 600;">Team Leadership</div>
-                            <div style="font-size: 0.9rem; color: var(--dark-gray);">Agile Teams & Cross-functional
-                                Collaboration</div>
+                            <div style="font-weight: 600;" id="competency1">Team Leadership</div>
+                            <div style="font-size: 0.9rem; color: var(--dark-gray);" id="competency1Desc">Agile Teams & Cross-functional Collaboration</div>
                         </div>
                         <div class="stat-item">
                             <i class="fas fa-rocket"
                                 style="font-size: 1.5rem; color: var(--primary-blue); margin-bottom: 0.5rem;"></i>
-                            <div style="font-weight: 600;">Innovation</div>
-                            <div style="font-size: 0.9rem; color: var(--dark-gray);">Emerging Technologies & Solutions
-                            </div>
+                            <div style="font-weight: 600;" id="competency2">Innovation</div>
+                            <div style="font-size: 0.9rem; color: var(--dark-gray);" id="competency2Desc">Emerging Technologies & Solutions</div>
                         </div>
                         <div class="stat-item">
                             <i class="fas fa-chart-line"
                                 style="font-size: 1.5rem; color: var(--primary-blue); margin-bottom: 0.5rem;"></i>
-                            <div style="font-weight: 600;">Growth Mindset</div>
-                            <div style="font-size: 0.9rem; color: var(--dark-gray);">Continuous Learning & Adaptation
-                            </div>
+                            <div style="font-weight: 600;" id="competency3">Growth Mindset</div>
+                            <div style="font-size: 0.9rem; color: var(--dark-gray);" id="competency3Desc">Continuous Learning & Adaptation</div>
                         </div>
                         <div class="stat-item">
                             <i class="fas fa-handshake"
                                 style="font-size: 1.5rem; color: var(--primary-blue); margin-bottom: 0.5rem;"></i>
-                            <div style="font-weight: 600;">Client Relations</div>
-                            <div style="font-size: 0.9rem; color: var(--dark-gray);">Stakeholder Management &
-                                Communication</div>
+                            <div style="font-weight: 600;" id="competency4">Client Relations</div>
+                            <div style="font-size: 0.9rem; color: var(--dark-gray);" id="competency4Desc">Stakeholder Management & Communication</div>
                         </div>
                     </div>
                 </section>
 
                 <section>
-                    <h2><i class="fas fa-address-book section-icon"></i>PROFESSIONAL REFERENCES</h2>
+                    <h2><i class="fas fa-address-book section-icon"></i><span id="referencesTitle">PROFESSIONAL REFERENCES</span></h2>
 
                     <div class="experience-item">
                         <div class="experience-title">
                             <i class="fas fa-chalkboard-teacher"></i>
-                            Suleiman Hamiar Suleiman
+                            <span id="ref1Name">Suleiman Hamiar Suleiman</span>
                         </div>
-                        <div style="margin-bottom: 0.5rem;">Senior Lecturer, Information Technology Department</div>
-                        <div style="margin-bottom: 0.5rem;">The State University of Zanzibar (SUZA)</div>
+                        <div style="margin-bottom: 0.5rem;" id="ref1Position">Senior Lecturer, Information Technology Department</div>
+                        <div style="margin-bottom: 0.5rem;" id="ref1Org">The State University of Zanzibar (SUZA)</div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
                             <a href="tel:+255777459285">+255 777 459 285</a>
@@ -1099,10 +1164,10 @@
                     <div class="experience-item">
                         <div class="experience-title">
                             <i class="fas fa-user-tie"></i>
-                            Abdulrahim Ramadhan Hassan
+                            <span id="ref2-name">Abdulrahim Ramadhan Hassan</span>
                         </div>
-                        <div style="margin-bottom: 0.5rem;">Head Master</div>
-                        <div style="margin-bottom: 0.5rem;">Maarif Haci Ayse Var School</div>
+                        <div style="margin-bottom: 0.5rem;" id="ref2Position">Head Master</div>
+                        <div style="margin-bottom: 0.5rem;" id="ref2Org">Maarif Haci Ayse Var School</div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
                             <a href="tel:+255779131616">+255 779 131 616</a>
@@ -1112,16 +1177,442 @@
                     <div class="experience-item">
                         <div class="experience-title">
                             <i class="fas fa-building"></i>
-                            Technical Reference Available
+                            <span id="ref3-title">Technical Reference Available</span>
                         </div>
-                        <div style="margin-bottom: 0.5rem;">Senior Management, Hima Technology</div>
-                        <div style="color: var(--dark-gray); font-style: italic;">Available upon request for current
-                            employment verification</div>
+                        <div style="margin-bottom: 0.5rem;" id="ref3Position">Senior Management, Hima Technology</div>
+                        <div style="color: var(--dark-gray); font-style: italic;" id="ref3Note">Available upon request for current employment verification</div>
                     </div>
                 </section>
             </article>
         </main>
     </div>
+    
+    <script>
+        // Language translations
+        const translations = {
+            en: {
+                subtitle: "FULL-STACK DEVELOPER & TEAM LEADER",
+                tagline: "Transforming Ideas into Scalable Digital Solutions | 5+ Years Experience",
+                contactTitle: "CONTACT",
+                location: "Zanzibar, Tanzania",
+                skillsTitle: "TECHNICAL EXPERTISE",
+                frontendTitle: "Frontend Development",
+                backendTitle: "Backend Development",
+                devopsTitle: "Databases & DevOps",
+                leadershipTitle: "Leadership & Management",
+                teamLead: "Team Leadership",
+                yearsExp: "5+ Years",
+                agile: "Agile/Scrum Methodology",
+                projectManage: "Project Management",
+                clientRelations: "Client Relations",
+                certsTitle: "CERTIFICATIONS",
+                cert1: "Agile Project Management",
+                cert1Issuer: "HP LIFE - 2024",
+                cert2: "Digital Business Skills",
+                cert2Issuer: "HP LIFE - 2024",
+                cert3: "Effective Leadership",
+                cert3Issuer: "HP LIFE - 2024",
+                cert4: "Cybersecurity Awareness",
+                cert4Issuer: "HP LIFE - 2024",
+                certified: "Certified",
+                advanced: "Advanced",
+                learning: "Learning",
+                langsTitle: "LANGUAGES",
+                lang1: "English",
+                lang1Level: "Fluent",
+                lang2: "Swahili",
+                lang2Level: "Native",
+                lang3: "Arabic",
+                lang3Level: "Conversational",
+                statsTitle: "CAREER STATISTICS",
+                projectsLabel: "Projects Completed",
+                experienceLabel: "Years Experience",
+                teamLabel: "Team Members Led",
+                satisfactionLabel: "Client Satisfaction",
+                summaryTitle: "PROFESSIONAL SUMMARY",
+                summary1: "Experienced",
+                highlight1: "Full-Stack Developer and Team Leader",
+                summary2: "with 5+ years of expertise in modern web technologies, specializing in Next.js, React, and Node.js ecosystems. Currently serving as Team Leader at Hima Technology, where I lead cross-functional development teams in delivering cutting-edge web applications and digital solutions.",
+                summary3: "My unique combination of technical proficiency and leadership experience enables me to bridge the gap between complex technical requirements and business objectives. I excel in",
+                highlight2: "agile environments",
+                summary4: ", having successfully managed multiple concurrent projects while maintaining high code quality and team productivity.",
+                summary5: "Passionate about",
+                highlight3: "emerging technologies",
+                summary6: ", cybersecurity, and data-driven solutions. My freelance work with organizations like TAMWA Zanzibar demonstrates my ability to adapt quickly to diverse project requirements while delivering exceptional results within tight deadlines.",
+                summary7: "Committed to continuous learning and knowledge sharing, I actively participate in developer communities and mentor junior developers in modern web development practices and agile methodologies.",
+                experienceTitle: "PROFESSIONAL EXPERIENCE",
+                job1Title: "Team Leader & Senior Full-Stack Developer",
+                current: "Current",
+                job1Duration: "Hima Technology | 2023 - Present",
+                job1_1: "Lead and mentor a team of 3+ developers in Next.js and React-based projects",
+                job1_2: "Architect and implement scalable full-stack solutions using modern technologies",
+                job1_3: "Manage project timelines, resource allocation, and client communications",
+                job1_4: "Conduct code reviews and establish development best practices",
+                job1_5: "Collaborate with stakeholders to translate business requirements into technical solutions",
+                job1_6: "Implement CI/CD pipelines and deployment strategies",
+                job1_7: "Achieved 98% client satisfaction rate and 40% improvement in project delivery time",
+                job2Title: "Freelance IT Specialist & Software Developer",
+                job2Duration: "TAMWA Zanzibar (Tanzania Media Women's Association) | 2024 - Present",
+                partTime: "Part-time: 2 days per week",
+                job2_1: "Design and develop custom software solutions for media and communication needs",
+                job2_2: "Provide comprehensive IT support and system maintenance",
+                job2_3: "Implement digital transformation strategies for organizational efficiency",
+                job2_4: "Train staff on new technologies and digital tools",
+                job2_5: "Manage database systems and ensure data security compliance",
+                job3Title: "Mobile Application Developer",
+                job3Duration: "HM&Y Technology | 2023 - 2024",
+                job3_1: "Developed EDUGAMES mobile application using React Native and Android Studio",
+                job3_2: "Implemented educational technology solutions for enhanced learning experiences",
+                job3_3: "Collaborated with UI/UX designers to create intuitive user interfaces",
+                job3_4: "Integrated APIs and third-party services for enhanced functionality",
+                job3_5: "Conducted testing and quality assurance for mobile applications",
+                job4Title: "Network & Web Development Specialist",
+                job4Duration: "Zanzibar Management Authority (ZEMA) | 2022",
+                job4_1: "Designed and developed the official ZEMA website (zema.go.tz)",
+                job4_2: "Implemented firewall solutions and network security protocols",
+                job4_3: "Configured network infrastructure and security systems",
+                job4_4: "Provided technical consultation on IT infrastructure improvements",
+                job4_5: "Established cybersecurity best practices for government operations",
+                job5Title: "Graphics Designer & Digital Marketing Specialist",
+                job5Duration: "YaNaS Gen Printing | 2019 - 2021",
+                job5_1: "Created comprehensive brand identities and marketing materials",
+                job5_2: "Managed social media campaigns and digital marketing strategies",
+                job5_3: "Designed print materials including brochures, business cards, and posters",
+                job5_4: "Administered network systems and provided IT support",
+                job5_5: "Increased client engagement by 60% through innovative design solutions",
+                projectsTitle: "KEY PROJECTS & ACHIEVEMENTS",
+                project1Title: "Hima Technology Corporate Website",
+                project1Duration: "2024 | Team Leader & Lead Developer",
+                project1_1: "Led team of 3 developers in building modern corporate website",
+                project1_2: "Implemented server-side rendering and SEO optimization",
+                project1_3: "Integrated advanced analytics and performance monitoring",
+                project1_4: "Achieved 95+ Google PageSpeed score and mobile responsiveness",
+                live1: "Live:",
+                project2Title: "UKUEM Members Portal",
+                project2Duration: "2024 | Full-Stack Developer",
+                project2_1: "Developed comprehensive membership management system",
+                project2_2: "Built with Svelte frontend and Slim Framework backend",
+                project2_3: "Implemented user authentication and role-based permissions",
+                project2_4: "Created automated reporting and data analytics dashboard",
+                live2: "Live:",
+                project3Title: "ZAMECO Mobile Application",
+                project3Duration: "2023 | Mobile Developer (PWA)",
+                project3_1: "Developed media management mobile application",
+                project3_2: "Implemented real-time notifications and content management",
+                project3_3: "Created offline functionality and data synchronization",
+                live3: "Live:",
+                project4Title: "Tourism & Safari Platforms",
+                project4Duration: "2023 | Full-Stack Developer",
+                project4_1: "Journeyers Tour And Safari: React + Node.js platform with booking system",
+                project4_2: "Enjoy Family Zanzibar Tours: Custom CMS and tour management",
+                project4_3: "Integrated payment gateways and booking management systems",
+                project4_4: "Implemented multi-language support and mobile optimization",
+                project4_5: "Increased online bookings by 150% for both platforms",
+                project5Title: "Environment Permit System",
+                project5Duration: "2023 - Present | Frontend Developer",
+                project5_1: "Developed government permit application system",
+                project5_2: "Implemented complex form validation and document management",
+                project5_3: "Created user-friendly interface for environmental compliance",
+                project5_4: "Integrated with government databases and APIs",
+                awardsTitle: "AWARDS & RECOGNITION",
+                award1: "11th Position - Machine Learning Model Building Hackathon",
+                award1Details: "Africa-wide Competition | 2022 | Competed against 500+ participants",
+                award2: "2nd Position - Code in the Dark Competition",
+                award2Details: "Google Developer Students Club SUZA | 2023 | Offline coding challenge",
+                award3: "Outstanding Leadership Award",
+                award3Details: "Hima Technology | 2024 | Team performance and project delivery excellence",
+                educationTitle: "EDUCATION & TRAINING",
+                edu1Title: "Diploma in Information Technology",
+                edu1Duration: "The State University of Zanzibar (SUZA) | 2022 - 2023",
+                coursesTitle: "Relevant Coursework:",
+                course1: "Advanced Programming & Software Engineering",
+                course2: "Database Systems & Data Management",
+                course3: "System Analysis & Design",
+                course4: "Computer Networks & Security",
+                course5: "Mobile Application Development",
+                course6: "Linux System Administration",
+                course7: "Web Technologies & UI/UX Design",
+                edu2Title: "Advanced Level Education (Science Track)",
+                edu2Duration: "Maarif Haci Ayse Var School | 2018 - 2021",
+                subject1: "Mathematics & Applied Mathematics",
+                subject2: "Chemistry & Biology",
+                subject3: "Geography & General Studies",
+                subject4: "Strong foundation in analytical thinking and problem-solving",
+                devTitle: "PROFESSIONAL DEVELOPMENT",
+                intern1Title: "Network Administration Intern",
+                intern1Duration: "Zanzibar Management Authority (ZEMA) | 2022",
+                intern1_1: "Hands-on experience with enterprise network configuration",
+                intern1_2: "Sophos firewall installation and security protocols",
+                intern1_3: "Android Studio development and mobile security",
+                intern1_4: "Government IT infrastructure management",
+                intern2Title: "Design & Marketing Intern",
+                intern2Duration: "YaNaS Gen Printing | 2019 - 2021",
+                intern2_1: "Mastered Adobe Creative Suite (Photoshop, Illustrator)",
+                intern2_2: "Developed brand identity and marketing materials",
+                intern2_3: "Social media management and digital marketing campaigns",
+                intern2_4: "Print design and production workflow management",
+                communityTitle: "COMMUNITY & LEADERSHIP",
+                community1: "SUZA Multimedia And Animation Club (SIC) - Active Member | 2021 - 2023",
+                community2: "SUZA Cyber Security Community - Security Researcher | 2021 - 2023",
+                community3: "SUZA Code {A} Thon - Mentor & Organizer | 2022 - Present",
+                community4: "Google Developer Student Club SUZA - Technical Lead | 2022 - 2023",
+                community5: "SUZA Digital Earth Africa - Data Science Contributor | 2022 - 2023",
+                community6: "Tanzania Tech Community - Workshop Facilitator | 2023 - Present",
+                competenciesTitle: "CORE COMPETENCIES",
+                competency1: "Team Leadership",
+                competency1Desc: "Agile Teams & Cross-functional Collaboration",
+                competency2: "Innovation",
+                competency2Desc: "Emerging Technologies & Solutions",
+                competency3: "Growth Mindset",
+                competency3Desc: "Continuous Learning & Adaptation",
+                competency4: "Client Relations",
+                competency4Desc: "Stakeholder Management & Communication",
+                referencesTitle: "PROFESSIONAL REFERENCES",
+                ref1Name: "Suleiman Hamiar Suleiman",
+                ref1Position: "Senior Lecturer, Information Technology Department",
+                ref1Org: "The State University of Zanzibar (SUZA)",
+                ref2Name: "Abdulrahim Ramadhan Hassan",
+                ref2Position: "Head Master",
+                ref2Org: "Maarif Haci Ayse Var School",
+                ref3Title: "Technical Reference Available",
+                ref3Position: "Senior Management, Hima Technology",
+                ref3Note: "Available upon request for current employment verification"
+            },
+            ar: {
+                subtitle: "مطور كامل + قائد فريق",
+                tagline: "تحويل الأفكار إلى حلول رقمية قابلة للتطوير | خبرة أكثر من 5 سنوات",
+                contactTitle: "الاتصال",
+                location: "زنجبار، تنزانيا",
+                skillsTitle: "الخبرة التقنية",
+                frontendTitle: "تطوير الواجهة الأمامية",
+                backendTitle: "تطوير الواجهة الخلفية",
+                devopsTitle: "قواعد البيانات وعمليات التطوير",
+                leadershipTitle: "القيادة والإدارة",
+                teamLead: "قيادة الفريق",
+                yearsExp: "5+ سنوات",
+                agile: "منهجية Agile/Scrum",
+                projectManage: "إدارة المشاريع",
+                clientRelations: "علاقات العملاء",
+                certsTitle: "الشهادات",
+                cert1: "إدارة المشاريع الرشيقة",
+                cert1Issuer: "HP LIFE - 2024",
+                cert2: "مهارات الأعمال الرقمية",
+                cert2Issuer: "HP LIFE - 2024",
+                cert3: "القيادة الفعالة",
+                cert3Issuer: "HP LIFE - 2024",
+                cert4: "التوعية بالأمن السيبراني",
+                cert4Issuer: "HP LIFE - 2024",
+                certified: "معتمد",
+                advanced: "متقدم",
+                learning: "أتعلم",
+                langsTitle: "اللغات",
+                lang1: "الإنجليزية",
+                lang1Level: "طلاقة",
+                lang2: "السواحيلية",
+                lang2Level: "اللغة الأم",
+                lang3: "العربية",
+                lang3Level: "محادثة",
+                statsTitle: "إحصائيات المسيرة المهنية",
+                projectsLabel: "المشاريع المكتملة",
+                experienceLabel: "سنوات الخبرة",
+                teamLabel: "أعضاء الفريق الذين قادتهم",
+                satisfactionLabel: "رضا العملاء",
+                summaryTitle: "ملخص مهني",
+                summary1: "أنا",
+                highlight1: "مطور كامل وقائد فريق",
+                summary2: "لدي خبرة تزيد عن 5 سنوات في تقنيات الويب الحديثة، متخصص في أنظمة Next.js وReact وNode.js. أعمل حاليًا كقائد فريق في Hima Technology، حيث أقود فرق التطوير متعددة التخصصات لتقديم تطبيقات ويب وحلول رقمية متطورة.",
+                summary3: "تمكنني تركيبتي الفريدة من الكفاءة التقنية وخبرة القيادة من سد الفجوة بين المتطلبات التقنية المعقدة وأهداف الأعمال. أتفوق في",
+                highlight2: "بيئات العمل الرشيقة",
+                summary4: "حيث قمت بإدارة مشاريع متعددة متزامنة بنجاح مع الحفاظ على جودة عالية للكود وإنتاجية الفريق.",
+                summary5: "أنا شغوف بـ",
+                highlight3: "التقنيات الناشئة",
+                summary6: "والأمن السيبراني والحلول القائمة على البيانات. يظهر عملي المستقل مع منظمات مثل TAMWA Zanzibar قدرتي على التكيف السريع مع متطلبات المشاريع المتنوعة مع تقديم نتائج استثنائية في مواعيد نهائية ضيقة.",
+                summary7: "ملتزم بالتعلم المستمر ومشاركة المعرفة، أشارك بنشاط في مجتمعات المطورين وأرشد المطورين المبتدئين في ممارسات تطوير الويب الحديثة ومنهجيات العمل الرشيقة.",
+                experienceTitle: "الخبرة المهنية",
+                job1Title: "قائد فريق ومطور كامل أول",
+                current: "حاليًا",
+                job1Duration: "Hima Technology | 2023 - الحاضر",
+                job1_1: "قاد ووجه فريقًا من 3+ مطورين في مشاريع تعتمد على Next.js وReact",
+                job1_2: "صمم ونفذ حلول كاملة قابلة للتطوير باستخدام التقنيات الحديثة",
+                job1_3: "أدرجت جداول زمنية للمشاريع، وتخصيص الموارد، واتصالات العملاء",
+                job1_4: "أجريت مراجعات للكود وأنشأت أفضل ممارسات التطوير",
+                job1_5: "تعاونت مع أصحاب المصلحة لترجمة متطلبات الأعمال إلى حلول تقنية",
+                job1_6: "نفذت خطوط أنابيب CI/CD واستراتيجيات النشر",
+                job1_7: "حقق معدل رضا العملاء 98% وتحسين وقت تسليم المشاريع بنسبة 40%",
+                job2Title: "أخصائي تقنية معلومات ومطور برمجيات مستقل",
+                job2Duration: "TAMWA Zanzibar | 2024 - الحاضر",
+                partTime: "دوام جزئي: يومين في الأسبوع",
+                job2_1: "صمم وطور حلول برمجية مخصصة لاحتياجات الإعلام والاتصالات",
+                job2_2: "وفر دعم تقنية معلومات شامل وصيانة الأنظمة",
+                job2_3: "نفذ استراتيجيات التحول الرقمي لتحسين الكفاءة التنظيمية",
+                job2_4: "درب الموظفين على التقنيات والأدوات الرقمية الجديدة",
+                job2_5: "أدرج أنظمة قواعد البيانات وضمن الامتثال لأمن البيانات",
+                job3Title: "مطور تطبيقات جوال",
+                job3Duration: "HM&Y Technology | 2023 - 2024",
+                job3_1: "طورت تطبيق EDUGAMES للجوال باستخدام React Native وAndroid Studio",
+                job3_2: "نفذت حلول تقنية تعليمية لتحسين تجارب التعلم",
+                job3_3: "تعاونت مع مصممي واجهة المستخدم لإنشاء واجهات مستخدم بديهية",
+                job3_4: "دمجت واجهات برمجة التطبيقات وخدمات الطرف الثالث لتحسين الوظائف",
+                job3_5: "أجريت اختبارات وضمان جودة لتطبيقات الجوال",
+                job4Title: "أخصائي شبكة وتطوير ويب",
+                job4Duration: "Zanzibar Management Authority (ZEMA) | 2022",
+                job4_1: "صمم وطور موقع ZEMA الرسمي (zema.go.tz)",
+                job4_2: "نفذ حلول جدران حماية وبروتوكولات أمان الشبكة",
+                job4_3: "ضبط بنية الشبكة وأنظمة الأمان",
+                job4_4: "قدم استشارات تقنية لتحسينات البنية التحتية لتقنية المعلومات",
+                job4_5: "أنشأ أفضل ممارسات الأمن السيبراني للعمليات الحكومية",
+                job5Title: "مصمم جرافيك وأخصائي تسويق رقمي",
+                job5Duration: "YaNaS Gen Printing | 2019 - 2021",
+                job5_1: "أنشأت هويات علامات تجارية شاملة ومواد تسويقية",
+                job5_2: "أدرجت حملات وسائل التواصل الاجتماعي واستراتيجيات التسويق الرقمي",
+                job5_3: "صممت مواد مطبوعة تشمل الكتيبات وبطاقات العمل والملصقات",
+                job5_4: "أدرجت أنظمة الشبكة ووفرت دعم تقنية المعلومات",
+                job5_5: "زادت مشاركة العملاء بنسبة 60% من خلال حلول تصميم مبتكرة",
+                projectsTitle: "المشاريع والإنجازات الرئيسية",
+                project1Title: "موقع شركة Hima Technology",
+                project1Duration: "2024 | قائد الفريق والمطور الرئيسي",
+                project1_1: "قاد فريقًا من 3 مطورين لبناء موقع شركة حديث",
+                project1_2: "نفذ عرض جانب الخادم وتحسين محركات البحث",
+                project1_3: "دمج التحليلات المتقدمة ومراقبة الأداء",
+                project1_4: "حقق درجة 95+ في Google PageSpeed واستجابة للجوال",
+                live1: "حالي:",
+                project2Title: "بوابة أعضاء UKUEM",
+                project2Duration: "2024 | مطور كامل",
+                project2_1: "طورت نظام إدارة عضوية شامل",
+                project2_2: "بُنيت بواجهة Svelte وخلفية Slim Framework",
+                project2_3: "نفذت مصادقة المستخدم والأذونات القائمة على الأدوار",
+                project2_4: "أنشأت لوحة تقارير آلية وتحليلات بيانات",
+                live2: "حالي:",
+                project3Title: "تطبيق ZAMECO للجوال",
+                project3Duration: "2023 | مطور جوال (تطبيق ويب تقدمي)",
+                project3_1: "طورت تطبيق جوال لإدارة الوسائط",
+                project3_2: "نفذت إشعارات فورية وإدارة محتوى",
+                project3_3: "أنشأت وظائف دون اتصال ومزامنة البيانات",
+                live3: "حالي:",
+                project4Title: "منصات السياحة والسفاري",
+                project4Duration: "2023 | مطور كامل",
+                project4_1: "Journeyers Tour And Safari: منصة React + Node.js مع نظام حجز",
+                project4_2: "Enjoy Family Zanzibar Tours: نظام إدارة محتوى مخصص وإدارة الجولات",
+                project4_3: "دمج بوابات دفع وأنظمة إدارة الحجوزات",
+                project4_4: "نفذ دعم متعدد اللغات وتحسين للجوال",
+                project4_5: "زاد الحجوزات عبر الإنترنت بنسبة 150% لكلا المنصتين",
+                project5Title: "نظام تصاريح البيئة",
+                project5Duration: "2023 - الحاضر | مطور واجهة أمامية",
+                project5_1: "طورت نظام طلبات التصاريح الحكومية",
+                project5_2: "نفذت تحقق معقد من النماذج وإدارة المستندات",
+                project5_3: "أنشأت واجهة سهلة الاستخدام للامتثال البيئي",
+                project5_4: "دمج مع قواعد البيانات الحكومية وواجهات برمجة التطبيقات",
+                awardsTitle: "الجوائز والتقدير",
+                award1: "المركز الحادي عشر - هاكاثون بناء نماذج التعلم الآلي",
+                award1Details: "منافسة أفريقية | 2022 | تنافس مع أكثر من 500 مشارك",
+                award2: "المركز الثاني - مسابقة Code in the Dark",
+                award2Details: "نادي مطوري Google الطلابي SUZA | 2023 | تحدي برمجة دون اتصال",
+                award3: "جائزة القيادة المتميزة",
+                award3Details: "Hima Technology | 2024 | تميز في أداء الفريق وتسليم المشاريع",
+                educationTitle: "التعليم والتدريب",
+                edu1Title: "دبلوم في تكنولوجيا المعلومات",
+                edu1Duration: "جامعة زنجبار الحكومية (SUZA) | 2022 - 2023",
+                coursesTitle: "المقررات ذات الصلة:",
+                course1: "البرمجة المتقدمة وهندسة البرمجيات",
+                course2: "أنظمة قواعد البيانات وإدارة البيانات",
+                course3: "تحليل وتصميم النظم",
+                course4: "شبكات الحاسوب والأمن",
+                course5: "تطوير تطبيقات الجوال",
+                course6: "إدارة أنظمة Linux",
+                course7: "تقنيات الويب وتصميم واجهة المستخدم/تجربة المستخدم",
+                edu2Title: "التعليم المتقدم (مسار العلوم)",
+                edu2Duration: "مدرسة معارف حاجي عائشة فار | 2018 - 2021",
+                subject1: "الرياضيات والرياضيات التطبيقية",
+                subject2: "الكيمياء والأحياء",
+                subject3: "الجغرافيا والدراسات العامة",
+                subject4: "أساس قوي في التفكير التحليلي وحل المشكلات",
+                devTitle: "التطوير المهني",
+                intern1Title: "متدرب في إدارة الشبكات",
+                intern1Duration: "هيئة إدارة زنجبار (ZEMA) | 2022",
+                intern1_1: "خبرة عملية في تكوين شبكات المؤسسات",
+                intern1_2: "تثبيت جدار حماية Sophos وبروتوكولات الأمان",
+                intern1_3: "تطوير Android Studio وأمن الجوال",
+                intern1_4: "إدارة البنية التحتية لتقنية المعلومات الحكومية",
+                intern2Title: "متدرب في التصميم والتسويق",
+                intern2Duration: "YaNaS Gen Printing | 2019 - 2021",
+                intern2_1: "أتقنت Adobe Creative Suite (Photoshop, Illustrator)",
+                intern2_2: "طورت هوية العلامة التجارية ومواد التسويق",
+                intern2_3: "إدارة وسائل التواصل الاجتماعي وحملات التسويق الرقمي",
+                intern2_4: "تصميم الطباعة وإدارة سير عمل الإنتاج",
+                communityTitle: "المجتمع والقيادة",
+                community1: "نادي الوسائط المتعددة والرسوم المتحركة في SUZA (SIC) - عضو نشط | 2021 - 2023",
+                community2: "مجتمع الأمن السيبراني في SUZA - باحث أمني | 2021 - 2023",
+                community3: "SUZA Code {A} Thon - مرشد ومنظم | 2022 - الحاضر",
+                community4: "نادي مطوري Google الطلابي SUZA - قائد تقني | 2022 - 2023",
+                community5: "SUZA Digital Earth Africa - مساهم في علم البيانات | 2022 - 2023",
+                community6: "مجتمع التكنولوجيا التنزاني - ميسر ورش العمل | 2023 - الحاضر",
+                competenciesTitle: "الكفاءات الأساسية",
+                competency1: "قيادة الفريق",
+                competency1Desc: "فرق رشيقة والتعاون متعدد الوظائف",
+                competency2: "الابتكار",
+                competency2Desc: "التقنيات الناشئة والحلول",
+                competency3: "عقلية النمو",
+                competency3Desc: "التعلم المستمر والتكيف",
+                competency4: "علاقات العملاء",
+                competency4Desc: "إدارة أصحاب المصلحة والاتصال",
+                referencesTitle: "المراجع المهنية",
+                ref1Name: "سليمان حميار سليمان",
+                ref1Position: "محاضر أول، قسم تكنولوجيا المعلومات",
+                ref1Org: "جامعة زنجبار الحكومية (SUZA)",
+                ref2Name: "عبدالرحيم رمضان حسن",
+                ref2Position: "مدير المدرسة",
+                ref2Org: "مدرسة معارف حاجي عائشة فار",
+                ref3Title: "مرجع تقني متاح",
+                ref3Position: "الإدارة العليا، Hima Technology",
+                ref3Note: "متاح عند الطلب للتحقق من التوظيف الحالي"
+            }
+        };
+
+        // Function to change language
+        function changeLanguage(lang) {
+            // Update HTML direction
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            
+            // Update button states
+            document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+            document.getElementById('lang-ar').classList.toggle('active', lang === 'ar');
+            
+            // Save to localStorage
+            localStorage.setItem('resumeLang', lang);
+            
+            // Update all translatable elements
+            const elements = document.querySelectorAll('[id]');
+            elements.forEach(element => {
+                const key = element.id;
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Update badge texts
+            document.querySelectorAll('.badge').forEach(badge => {
+                if (badge.id === 'certified-badge') {
+                    badge.textContent = translations[lang]['certified'];
+                } else if (badge.id === 'advanced-badge') {
+                    badge.textContent = translations[lang]['advanced'];
+                } else if (badge.id === 'learning-badge') {
+                    badge.textContent = translations[lang]['learning'];
+                } else if (badge.id === 'current-badge') {
+                    badge.textContent = translations[lang]['current'];
+                } else if (badge.id === 'years-exp') {
+                    badge.textContent = translations[lang]['yearsExp'];
+                }
+            });
+        }
+
+        // Initialize language from localStorage or default to English
+        const savedLang = localStorage.getItem('resumeLang') || 'en';
+        changeLanguage(savedLang);
+
+        // Add event listeners to language buttons
+        document.getElementById('lang-en').addEventListener('click', () => changeLanguage('en'));
+        document.getElementById('lang-ar').addEventListener('click', () => changeLanguage('ar'));
+    </script>
 </body>
 
 </html>
