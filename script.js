@@ -246,7 +246,7 @@ const translations = {
     cert4: "التوعية بالأمن السيبراني",
     cert4Issuer: "HP LIFE - 2024",
     cert5: "مقدمة في الأمن السيبراني",
-    cert4Issuer: "أكاديمية سيسكو للشبكات - 2025",
+    cert5Issuer: "أكاديمية سيسكو للشبكات - 2025",
     certified: "معتمد",
     advanced: "متقدم",
     learning: "أتعلم",
